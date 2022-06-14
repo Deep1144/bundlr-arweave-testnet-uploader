@@ -1,49 +1,38 @@
 import type { NextPage } from 'next';
-import type { FC } from 'react';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
+import { Button, NumberDecrementStepper, NumberIncrementStepper, NumberInput, NumberInputField, NumberInputStepper, Text } from '@chakra-ui/react';
+import { useBundler } from '@/state/bundlr.context';
 
 const Home: NextPage = () => {
+  const { initialiseBundlr, fundWallet, balance } = useBundler();
+
   return (
-    <div className='py-6 justify-center text-center'>
-      <div className='flex justify-center'>
+    <div className='py-6 justify-center text-center container mx-auto'>
+      <div className='flex justify-end'>
         <ConnectButton />
       </div>
 
-      <h1 className='text-4xl font-bold mt-6'>🚀 create-web3-frontend</h1>
-      <InfoSection />
-    </div>
-  );
-};
+      <h1 className='text-4xl font-bold mt-6'>🚀 Save My Files</h1>
 
-const InfoSection: FC = () => {
-  return (
-    <div className='mt-10'>
-      <h2 className='text-xl font-bold'>If you need help</h2>
-      <div className='flex flex-col gap-2 mt-2'>
-        <a
-          href='https://wagmi.sh'
-          target='_blank'
-          className='underline text-gray-600'
-        >
-          Link to wagmi docs
-        </a>
-        <a
-          href='https://github.com/dhaiwat10/create-web3-frontend'
-          target='_blank'
-          className='underline text-gray-600'
-        >
-          Open an issue on Github
-        </a>
-        <a
-          href='https://twitter.com/dhaiwat10'
-          target='_blank'
-          className='underline text-gray-600'
-        >
-          DM me on Twitter
-        </a>
+      <Button className='mt-10' onClick={initialiseBundlr}>Let's Get started</Button>
+
+      <div className='mt-12'>
+        <Text>
+          Your current balace is: {balance}
+        </Text>
+        <NumberInput className='w-1/5 mx-auto' step={0.01} defaultValue={0.05}>
+          <NumberInputField />
+          <NumberInputStepper >
+            <NumberIncrementStepper />
+            <NumberDecrementStepper />
+          </NumberInputStepper>
+        </NumberInput>
+
+        <Button className='mt-2' onClick={() => fundWallet(0.02)}>💸 Add Fund</Button>
       </div>
+
+
     </div>
   );
 };
-
 export default Home;
