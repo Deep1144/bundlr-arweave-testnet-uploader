@@ -7,13 +7,15 @@ export interface IBundlrHook {
     initialiseBundlr: () => Promise<void>;
     fundWallet: (_: number) => void;
     balance: string;
+    uploadFile: (file: Buffer) => Promise<any>
 }
 
 
 const BundlrContext = createContext<IBundlrHook>({
     initialiseBundlr: async () => { },
     fundWallet: (_: number) => { },
-    balance: ''
+    balance: '',
+    uploadFile: async (file) => { },
 });
 
 const BundlrContextProvider = ({ children }: any): JSX.Element => {
@@ -75,8 +77,13 @@ const BundlrContextProvider = ({ children }: any): JSX.Element => {
         }
     }
 
+    async function uploadFile(file) {
+        let tx = await bundlrInstance.uploader.upload(file, [{ name: "Content-Type", value: "image/png" }])
+        return tx;
+    }
+
     return (
-        <BundlrContext.Provider value={{ initialiseBundlr, fundWallet, balance }}>
+        <BundlrContext.Provider value={{ initialiseBundlr, fundWallet, balance, uploadFile }}>
             {children}
         </BundlrContext.Provider>
     )
