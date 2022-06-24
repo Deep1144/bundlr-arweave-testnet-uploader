@@ -1,3 +1,9 @@
+## Further Improvement:
+1. Right now we are only uploading images, we can add support for other formats as well (video, audio, anything)
+2. Store urls of uploaded image with wallet address in Supabase and show the list to user 
+
+<br />
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-web3-frontend`](https://github.com/dhaiwat10/create-web3-frontend).
 
 ## Getting Started
@@ -27,3 +33,4 @@ To learn more about Next.js, take a look at the following resources:
 - [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
 You can check out [the create-web3-frontend GitHub repository](https://github.com/dhaiwat10/create-web3-frontend) - your feedback and contributions are welcome!
+
