@@ -12,13 +12,13 @@ import BundlrContextProvider from '@/state/bundlr.context';
 const { chains, provider } = configureChains(
   [chain.polygonMumbai],
   [
-    jsonRpcProvider({ rpc: () => ({ http: 'https://polygon-mumbai.g.alchemy.com/v2/jkUDVA_a1JATM92ymcbxC4mjOW5BhKod' }) }),
+    jsonRpcProvider({ rpc: () => ({ http: process.env.NEXT_PUBLIC_ALCHEMY_RPC_URL }) }),
     publicProvider(),
   ]
 );
 
 const { connectors } = getDefaultWallets({
-  appName: 'My RainbowKit App',
+  appName: 'Bundlr arweave testnet demo',
   chains,
 });
 
